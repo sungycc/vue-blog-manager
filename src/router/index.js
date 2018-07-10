@@ -9,24 +9,11 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/home',
-      name: 'HelloWorld',
-      component: _import('HelloWorld'),
-      children: [
-        {
-          path: '',
-          name: 'home',
-          component: _import('hi/home')
-        }, {
-          path: 'hi1',
-          name: 'hi1',
-          component: _import('hi/hi1')
-        }, {
-          path: 'hi2',
-          name: 'hi2',
-          component: _import('hi/hi2')
-        }
-      ]
+      path: '/',
+      redirect: '/login'
+    }, {
+      path: '/login',
+      component: _import('login')
     }
   ]
 })

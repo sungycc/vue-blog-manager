@@ -3,33 +3,7 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
-const os = require('os');
-const localHost = getLocalIps()[0];
-
-/**
- * 获取本机IP
- *
- * @param {boolean}  是否显示ipb6
- * @returns {object} 包含Ip的数组
- *
- * console.log('本机ip地址(不包括Ipv6):', getLocalIps());
- * console.log('本机ip地址(包括Ipv6):', getLocalIps(true));
- *
- */
-function getLocalIps (flagIpv6) {
-  var ifaces = os.networkInterfaces();
-  var ips = [];
-  var func = function (details) {
-    if (!flagIpv6 && details.family === 'IPv6') {
-      return;
-    }
-    ips.push(details.address);
-  };
-  for (var dev in ifaces) {
-    ifaces[dev].forEach(func);
-  }
-  return ips;
-}
+const localIps = require('./getLocalIps')
 
 module.exports = {
   dev: {
@@ -41,7 +15,7 @@ module.exports = {
 
     // Various Dev Server settings
     // host: 'localhost', // can be overwritten by process.env.HOST
-    host: localHost, // can be overwritten by process.env.HOST
+    host: localIps()[0], // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
