@@ -10,10 +10,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/login'
+      redirect: '/layout'
     }, {
       path: '/login',
       component: _import('login')
+    }, {
+      path: '/layout',
+      component: _import('layout')
     }
   ]
 })
